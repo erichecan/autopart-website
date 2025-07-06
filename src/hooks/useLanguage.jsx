@@ -16,6 +16,7 @@ export const LanguageProvider = ({ children }) => {
     if (browserLang.startsWith('zh')) return 'zh';
     if (browserLang.startsWith('fr')) return 'fr';
     if (browserLang.startsWith('es')) return 'es';
+    if (browserLang.startsWith('ar')) return 'ar';
     
     // Default to English
     return 'en';

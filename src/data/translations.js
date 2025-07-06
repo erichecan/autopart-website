@@ -401,5 +401,106 @@ export const translations = {
     moq: 'MOQ',
     pieces: 'pzs',
     usd: 'USD'
+  },
+
+  ar: {
+    // Navigation
+    home: 'الرئيسية',
+    products: 'المنتجات',
+    about: 'من نحن',
+    contact: 'اتصل بنا',
+    quote: 'طلب عرض سعر',
+    
+    // Hero Section
+    heroTitle: 'مورد قطع غيار السيارات المحترف',
+    heroSubtitle: 'مصنع المصدر الصيني - 20 عاماً من الخبرة',
+    heroDescription: 'نحن متخصصون في تصنيع وتصدير قطع غيار السيارات المختلفة، ونقدم منتجات وخدمات عالية الجودة للعملاء في جميع أنحاء العالم',
+    getQuote: 'احصل على عرض سعر',
+    viewProducts: 'عرض المنتجات',
+    
+    // Company Info
+    companyName: 'مورد قطع غيار السيارات المحترف',
+    factoryTitle: 'مصنع المصدر الصيني',
+    experienceYears: '20 عاماً من الخبرة',
+    qualityAssurance: 'ضمان الجودة',
+    fastDelivery: 'توصيل سريع',
+    competitivePrice: 'أسعار تنافسية',
+    
+    // Product Categories
+    engineSystem: 'نظام المحرك',
+    brakeSystem: 'نظام الفرامل',
+    suspensionSystem: 'نظام التعليق',
+    electricalSystem: 'النظام الكهربائي',
+    filterSystem: 'نظام المرشحات',
+    lightingSystem: 'نظام الإضاءة',
+    
+    // Products
+    pistons: 'المكابس',
+    pistonRings: 'حلقات المكبس',
+    cylinderLiners: 'بطانات الأسطوانة',
+    crankshafts: 'أعمدة المرفق',
+    connectingRods: 'قضبان التوصيل',
+    brakePads: 'أقراص الفرامل',
+    brakeDiscs: 'أقراص الفرامل',
+    brakeDrums: 'طبول الفرامل',
+    brakeFluid: 'سائل الفرامل',
+    shockAbsorbers: 'ماصات الصدمات',
+    springs: 'الزنبركات',
+    stabilizerBars: 'أعمدة التوازن',
+    sparkPlugs: 'شمعات الإشعال',
+    ignitionCoils: 'ملفات الإشعال',
+    batteries: 'البطاريات',
+    alternators: 'المولدات',
+    oilFilters: 'مرشحات الزيت',
+    airFilters: 'مرشحات الهواء',
+    fuelFilters: 'مرشحات الوقود',
+    headlights: 'المصابيح الأمامية',
+    tailLights: 'المصابيح الخلفية',
+    turnSignals: 'إشارات الانعطاف',
+    ledLightBars: 'أشرطة LED',
+    
+    // About
+    aboutTitle: 'من نحن',
+    aboutDescription: 'نحن شركة تصنيع قطع غيار سيارات محترفة تقع في مركز التصنيع الصيني، ولدينا 20 عاماً من الخبرة في الإنتاج والتصدير. نحن ملتزمون بتوفير منتجات قطع غيار سيارات عالية الجودة للعملاء في جميع أنحاء العالم.',
+    ourAdvantages: 'مزايانا',
+    highQualityMaterials: 'مواد عالية الجودة',
+    strictQualityControl: 'مراقبة جودة صارمة',
+    
+    // Contact
+    contactTitle: 'اتصل بنا',
+    contactDescription: 'لمزيد من المعلومات حول المنتجات أو للحصول على عروض أسعار، يرجى عدم التردد في الاتصال بنا',
+    phone: 'الهاتف',
+    email: 'البريد الإلكتروني',
+    address: 'العنوان',
+    
+    // Quote Form
+    quoteTitle: 'عرض سعر المنتج',
+    quoteDescription: 'يرجى ملء المعلومات التالية، وسنقدم لك عرض سعر مفصل في أقرب وقت ممكن',
+    productCategory: 'فئة المنتج',
+    productName: 'اسم المنتج',
+    quantity: 'الكمية',
+    specifications: 'المواصفات',
+    yourName: 'اسمك',
+    yourEmail: 'بريدك الإلكتروني',
+    yourPhone: 'هاتفك',
+    company: 'اسم الشركة',
+    message: 'الرسالة',
+    submit: 'إرسال طلب السعر',
+    
+    // Footer
+    footerDescription: 'مورد قطع غيار سيارات محترف يقدم منتجات وخدمات عالية الجودة للعملاء في جميع أنحاء العالم',
+    quickLinks: 'روابط سريعة',
+    productCategories: 'فئات المنتجات',
+    contactInfo: 'معلومات الاتصال',
+    
+    // Common
+    learnMore: 'تعرف على المزيد',
+    viewDetails: 'عرض التفاصيل',
+    backToTop: 'العودة إلى الأعلى',
+    loading: 'جاري التحميل...',
+    price: 'السعر',
+    moq: 'الحد الأدنى للطلب',
+    pieces: 'قطعة',
+    usd: 'دولار أمريكي'
   }
 };

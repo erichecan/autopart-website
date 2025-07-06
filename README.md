@@ -4,7 +4,7 @@ A modern, multi-language website for automotive parts export business built with
 
 ## 🌟 Features
 
-- **Multi-language Support**: Chinese, English, French, Spanish
+- **Multi-language Support**: Chinese, English, French, Spanish, Arabic
 - **Product Catalog**: 6 categories with 20+ products
 - **Quote System**: Netlify-integrated contact forms
 - **Responsive Design**: Mobile, tablet, and desktop optimized
@@ -75,11 +75,12 @@ autopart/
 
 ## 🌍 Languages
 
-The website supports 4 languages with automatic browser detection:
+The website supports 5 languages with automatic browser detection and RTL support:
 - 🇨🇳 Chinese (中文)
 - 🇺🇸 English
 - 🇫🇷 French (Français)
 - 🇪🇸 Spanish (Español)
+- 🇸🇦 Arabic (العربية) with RTL support
 
 ## 📦 Product Categories
 
