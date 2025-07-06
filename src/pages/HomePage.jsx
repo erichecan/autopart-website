@@ -1,13 +1,48 @@
+import { useState, useEffect } from 'react';
 import { ArrowRight, CheckCircle, Factory, Truck, DollarSign, Award } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage.jsx';
-import { featuredProducts, productCategories } from '../data/products';
+import { getFeaturedProducts, getCategories } from '../lib/supabase.js';
 import ProductCard from '../components/ProductCard';
 
 const HomePage = ({ setCurrentPage, setSelectedProduct }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 获取推荐产品和分类数据
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        const [productsData, categoriesData] = await Promise.all([
+          getFeaturedProducts(language),
+          getCategories(language)
+        ]);
+        setFeaturedProducts(productsData);
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [language]);
 
   const handleQuoteClick = (product) => {
-    setSelectedProduct(product);
+    // 转换产品数据格式以兼容现有组件
+    const compatibleProduct = {
+      id: product.id,
+      nameKey: product.product_translations[0]?.name || product.slug,
+      price: product.price,
+      moq: product.moq,
+      image: product.image,
+      category: product.category_id,
+      oemCode: product.oemCode
+    };
+    setSelectedProduct(compatibleProduct);
     setCurrentPage('quote');
   };
 
@@ -120,22 +155,28 @@ const HomePage = ({ setCurrentPage, setSelectedProduct }) => {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {productCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setCurrentPage('products')}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 text-center group"
-              >
-                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
-                  {category.icon}
-                </div>
-                <h3 className="text-sm font-semibold text-gray-900">
-                  {t(category.nameKey)}
-                </h3>
-              </button>
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-8">
+              <div className="text-lg text-gray-600">{t('loading')}</div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setCurrentPage('products')}
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 text-center group"
+                >
+                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-sm font-semibold text-gray-900">
+                    {category.category_translations[0]?.name || category.slug}
+                  </h3>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -151,15 +192,33 @@ const HomePage = ({ setCurrentPage, setSelectedProduct }) => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.slice(0, 6).map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onQuoteClick={handleQuoteClick}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-8">
+              <div className="text-lg text-gray-600">{t('loading')}</div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredProducts.map((product) => {
+                // 转换Supabase数据格式以兼容ProductCard组件
+                const compatibleProduct = {
+                  id: product.id,
+                  nameKey: product.product_translations[0]?.name || product.slug,
+                  price: product.price,
+                  moq: product.moq,
+                  image: product.image,
+                  category: product.categories?.slug || product.category_id,
+                  oemCode: product.oemCode
+                };
+                return (
+                  <ProductCard
+                    key={product.id}
+                    product={compatibleProduct}
+                    onQuoteClick={handleQuoteClick}
+                  />
+                );
+              })}
+            </div>
+          )}
           
           <div className="text-center mt-12">
             <button

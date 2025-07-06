@@ -1,36 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Filter, Grid, List, Search } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage.jsx';
-import { productCategories } from '../data/products';
+import { getProducts, getCategories } from '../lib/supabase.js';
 import ProductCard from '../components/ProductCard';
 
 const ProductsPage = ({ setCurrentPage, setSelectedProduct }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState('grid');
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 获取产品和分类数据
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        const [productsData, categoriesData] = await Promise.all([
+          getProducts(language, selectedCategory === 'all' ? null : selectedCategory),
+          getCategories(language)
+        ]);
+        setProducts(productsData);
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [language, selectedCategory]);
 
   const handleQuoteClick = (product) => {
-    setSelectedProduct(product);
+    // 转换产品数据格式以兼容现有组件
+    const compatibleProduct = {
+      id: product.id,
+      nameKey: product.product_translations[0]?.name || product.slug,
+      price: product.price,
+      moq: product.moq,
+      image: product.image,
+      category: product.category_id,
+      oemCode: product.oemCode
+    };
+    setSelectedProduct(compatibleProduct);
     setCurrentPage('quote');
   };
 
-  // Get all products
-  const allProducts = productCategories.flatMap(category => 
-    category.products.map(product => ({
-      ...product,
-      categoryName: t(category.nameKey)
-    }))
-  );
-
-  // Filter products
-  const filteredProducts = allProducts.filter(product => {
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-    const matchesSearch = searchTerm === '' || 
-      t(product.nameKey).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.categoryName.toLowerCase().includes(searchTerm.toLowerCase());
+  // 筛选产品
+  const filteredProducts = products.filter(product => {
+    const productName = product.product_translations[0]?.name || '';
+    const categoryName = product.categories?.category_translations[0]?.name || '';
     
-    return matchesCategory && matchesSearch;
+    const matchesSearch = searchTerm === '' || 
+      productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      categoryName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (product.oemCode && product.oemCode.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    return matchesSearch;
   });
 
   return (
@@ -73,9 +102,9 @@ const ProductsPage = ({ setCurrentPage, setSelectedProduct }) => {
               className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             >
               <option value="all">All Categories</option>
-              {productCategories.map((category) => (
+              {categories.map((category) => (
                 <option key={category.id} value={category.id}>
-                  {t(category.nameKey)}
+                  {category.category_translations[0]?.name || category.slug}
                 </option>
               ))}
             </select>
@@ -104,7 +133,7 @@ const ProductsPage = ({ setCurrentPage, setSelectedProduct }) => {
             {filteredProducts.length} products found
             {selectedCategory !== 'all' && (
               <span className="ml-1">
-                in {t(productCategories.find(c => c.id === selectedCategory)?.nameKey)}
+                in {categories.find(c => c.id === selectedCategory)?.category_translations[0]?.name || 'Category'}
               </span>
             )}
           </p>
@@ -131,7 +160,7 @@ const ProductsPage = ({ setCurrentPage, setSelectedProduct }) => {
           >
             All Products
           </button>
-          {productCategories.map((category) => (
+          {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
@@ -142,25 +171,41 @@ const ProductsPage = ({ setCurrentPage, setSelectedProduct }) => {
               }`}
             >
               <span>{category.icon}</span>
-              <span>{t(category.nameKey)}</span>
+              <span>{category.category_translations[0]?.name || category.slug}</span>
             </button>
           ))}
         </div>
 
         {/* Products Grid */}
-        {filteredProducts.length > 0 ? (
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="text-lg text-gray-600">{t('loading')}</div>
+          </div>
+        ) : filteredProducts.length > 0 ? (
           <div className={`grid gap-6 ${
             viewMode === 'grid' 
               ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
               : 'grid-cols-1'
           }`}>
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onQuoteClick={handleQuoteClick}
-              />
-            ))}
+            {filteredProducts.map((product) => {
+              // 转换Supabase数据格式以兼容ProductCard组件
+              const compatibleProduct = {
+                id: product.id,
+                nameKey: product.product_translations[0]?.name || product.slug,
+                price: product.price,
+                moq: product.moq,
+                image: product.image,
+                category: product.categories?.slug || product.category_id,
+                oemCode: product.oemCode
+              };
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={compatibleProduct}
+                  onQuoteClick={handleQuoteClick}
+                />
+              );
+            })}
           </div>
         ) : (
           <div className="text-center py-12">

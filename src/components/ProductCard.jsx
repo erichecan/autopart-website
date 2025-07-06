@@ -15,7 +15,7 @@ const ProductCard = ({ product, onQuoteClick }) => {
         />
         <div className="absolute top-4 right-4">
           <span className="bg-primary-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-            {t(product.category + 'System')}
+            {typeof product.category === 'string' && product.category.length < 20 ? t(product.category + 'System') : 'Product'}
           </span>
         </div>
       </div>
@@ -23,7 +23,7 @@ const ProductCard = ({ product, onQuoteClick }) => {
       {/* Product Details */}
       <div className="p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          {t(product.nameKey)}
+          {typeof product.nameKey === 'string' && product.nameKey.length < 50 ? t(product.nameKey) : product.nameKey}
         </h3>
         {product.oemCode && (
           <p className="text-sm text-gray-500 mb-3 font-mono">
