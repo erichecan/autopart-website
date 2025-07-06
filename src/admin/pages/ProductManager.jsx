@@ -78,7 +78,7 @@ const ProductManager = () => {
       oemCode: ''
     });
     
-    alert('Product updated successfully! (Note: Changes are temporary in demo mode)');
+    alert('产品更新成功！（注意：演示模式下修改为临时效果）');
   };
 
   const handleAdd = () => {
@@ -105,13 +105,13 @@ const ProductManager = () => {
       oemCode: ''
     });
     
-    alert('Product added successfully! (Note: Changes are temporary in demo mode)');
+    alert('产品添加成功！（注意：演示模式下修改为临时效果）');
   };
 
   const handleDelete = (productId) => {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('您确定要删除这个产品吗？')) {
       setProducts(products.filter(product => product.id !== productId));
-      alert('Product deleted successfully! (Note: Changes are temporary in demo mode)');
+      alert('产品删除成功！（注意：演示模式下修改为临时效果）');
     }
   };
 
@@ -134,13 +134,13 @@ const ProductManager = () => {
       {/* Header */}
       <div className="p-6 border-b border-gray-200">
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-gray-900">Product Management</h2>
+          <h2 className="text-2xl font-bold text-gray-900">产品管理</h2>
           <button
             onClick={() => setShowAddForm(true)}
             className="flex items-center gap-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
-            Add Product
+            添加产品
           </button>
         </div>
       </div>
@@ -149,13 +149,13 @@ const ProductManager = () => {
       {(showAddForm || editingProduct) && (
         <div className="p-6 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            {showAddForm ? 'Add New Product' : 'Edit Product'}
+            {showAddForm ? '添加新产品' : '编辑产品'}
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Product ID
+                产品ID
               </label>
               <input
                 type="text"
@@ -164,13 +164,13 @@ const ProductManager = () => {
                 onChange={handleInputChange}
                 disabled={editingProduct}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                placeholder="e.g., brake-pads-new"
+                placeholder="例如：brake-pads-new"
               />
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Product Name Key
+                产品名称键值
               </label>
               <input
                 type="text"
@@ -178,13 +178,13 @@ const ProductManager = () => {
                 value={formData.nameKey}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                placeholder="e.g., brakePads"
+                placeholder="例如：brakePads"
               />
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Price (USD)
+                价格 (USD)
               </label>
               <input
                 type="number"
@@ -199,7 +199,7 @@ const ProductManager = () => {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                MOQ (Minimum Order Quantity)
+                最小起订量 (MOQ)
               </label>
               <input
                 type="number"
@@ -213,7 +213,7 @@ const ProductManager = () => {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Category
+                分类
               </label>
               <select
                 name="category"
@@ -221,7 +221,7 @@ const ProductManager = () => {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
               >
-                <option value="">Select Category</option>
+                <option value="">选择分类</option>
                 {productCategories.map(category => (
                   <option key={category.id} value={category.id}>
                     {t(category.nameKey)}
@@ -232,7 +232,7 @@ const ProductManager = () => {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                OEM Code
+                OEM 代码
               </label>
               <input
                 type="text"
@@ -240,13 +240,13 @@ const ProductManager = () => {
                 value={formData.oemCode}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                placeholder="e.g., BRK-3400-PAD"
+                placeholder="例如：BRK-3400-PAD"
               />
             </div>
             
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Image URL
+                图片链接
               </label>
               <input
                 type="url"
@@ -265,14 +265,14 @@ const ProductManager = () => {
               className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
               <Save className="w-4 h-4" />
-              {showAddForm ? 'Add Product' : 'Save Changes'}
+              {showAddForm ? '添加产品' : '保存修改'}
             </button>
             <button
               onClick={handleCancel}
               className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
             >
               <X className="w-4 h-4" />
-              Cancel
+              取消
             </button>
           </div>
         </div>
@@ -284,13 +284,13 @@ const ProductManager = () => {
           <table className="w-full table-auto">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Image</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Name</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">OEM Code</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Category</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Price</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">MOQ</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Actions</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-900">图片</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-900">产品名称</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-900">OEM代码</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-900">分类</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-900">价格</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-900">最小起订量</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-900">操作</th>
               </tr>
             </thead>
             <tbody>
@@ -343,7 +343,7 @@ const ProductManager = () => {
         
         {products.length === 0 && (
           <div className="text-center py-8 text-gray-500">
-            No products found. Add your first product to get started.
+            没有找到产品。请添加您的第一个产品。
           </div>
         )}
       </div>

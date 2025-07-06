@@ -9,8 +9,8 @@ const AdminApp = ({ onLogout }) => {
   const [currentPage, setCurrentPage] = useState('products');
 
   const navigation = [
-    { key: 'products', label: 'Product Management', icon: <Package className="w-5 h-5" /> },
-    { key: 'categories', label: 'Category Management', icon: <FolderOpen className="w-5 h-5" /> }
+    { key: 'products', label: '产品管理', icon: <Package className="w-5 h-5" /> },
+    { key: 'categories', label: '分类管理', icon: <FolderOpen className="w-5 h-5" /> }
   ];
 
   const renderPage = () => {
@@ -32,7 +32,7 @@ const AdminApp = ({ onLogout }) => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
               <Shield className="w-8 h-8 text-red-600" />
-              <h1 className="text-xl font-bold text-gray-900">CMS Admin Panel</h1>
+              <h1 className="text-xl font-bold text-gray-900">CMS 管理面板</h1>
             </div>
             
             <button
@@ -40,7 +40,7 @@ const AdminApp = ({ onLogout }) => {
               className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <LogOut className="w-4 h-4" />
-              Logout
+              退出登录
             </button>
           </div>
         </div>
@@ -51,7 +51,7 @@ const AdminApp = ({ onLogout }) => {
           {/* Sidebar Navigation */}
           <div className="lg:col-span-1">
             <nav className="bg-white rounded-lg shadow-md p-4">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Management</h2>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">管理功能</h2>
               <div className="space-y-2">
                 {navigation.map((item) => (
                   <button

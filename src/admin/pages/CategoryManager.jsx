@@ -61,7 +61,7 @@ const CategoryManager = () => {
       icon: ''
     });
     
-    alert('Category updated successfully! (Note: Changes are temporary in demo mode)');
+    alert('分类更新成功！（注意：演示模式下修改为临时效果）');
   };
 
   const handleAdd = () => {
@@ -80,19 +80,19 @@ const CategoryManager = () => {
       icon: ''
     });
     
-    alert('Category added successfully! (Note: Changes are temporary in demo mode)');
+    alert('分类添加成功！（注意：演示模式下修改为临时效果）');
   };
 
   const handleDelete = (categoryId) => {
     const category = categories.find(cat => cat.id === categoryId);
     if (category && category.productCount > 0) {
-      alert('Cannot delete category with existing products. Please move or delete products first.');
+      alert('无法删除包含产品的分类。请先移动或删除相关产品。');
       return;
     }
     
-    if (confirm('Are you sure you want to delete this category?')) {
+    if (confirm('您确定要删除这个分类吗？')) {
       setCategories(categories.filter(category => category.id !== categoryId));
-      alert('Category deleted successfully! (Note: Changes are temporary in demo mode)');
+      alert('分类删除成功！（注意：演示模式下修改为临时效果）');
     }
   };
 
@@ -113,13 +113,13 @@ const CategoryManager = () => {
       {/* Header */}
       <div className="p-6 border-b border-gray-200">
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-gray-900">Category Management</h2>
+          <h2 className="text-2xl font-bold text-gray-900">分类管理</h2>
           <button
             onClick={() => setShowAddForm(true)}
             className="flex items-center gap-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
-            Add Category
+            添加分类
           </button>
         </div>
       </div>
@@ -128,13 +128,13 @@ const CategoryManager = () => {
       {(showAddForm || editingCategory) && (
         <div className="p-6 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            {showAddForm ? 'Add New Category' : 'Edit Category'}
+            {showAddForm ? '添加新分类' : '编辑分类'}
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Category ID
+                分类ID
               </label>
               <input
                 type="text"
@@ -143,13 +143,13 @@ const CategoryManager = () => {
                 onChange={handleInputChange}
                 disabled={editingCategory}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                placeholder="e.g., engine-new"
+                placeholder="例如：engine-new"
               />
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Name Key (for translations)
+                名称键值（用于翻译）
               </label>
               <input
                 type="text"
@@ -157,13 +157,13 @@ const CategoryManager = () => {
                 value={formData.nameKey}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                placeholder="e.g., engineSystem"
+                placeholder="例如：engineSystem"
               />
             </div>
             
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Icon (Emoji)
+                图标（表情符号）
               </label>
               <div className="flex flex-wrap gap-2 mb-2">
                 {commonIcons.map(icon => (
@@ -185,7 +185,7 @@ const CategoryManager = () => {
                 value={formData.icon}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                placeholder="Select from above or enter custom emoji"
+                placeholder="从上面选择或输入自定义表情符号"
               />
             </div>
           </div>
@@ -196,14 +196,14 @@ const CategoryManager = () => {
               className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
               <Save className="w-4 h-4" />
-              {showAddForm ? 'Add Category' : 'Save Changes'}
+              {showAddForm ? '添加分类' : '保存修改'}
             </button>
             <button
               onClick={handleCancel}
               className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
             >
               <X className="w-4 h-4" />
-              Cancel
+              取消
             </button>
           </div>
         </div>
@@ -239,7 +239,7 @@ const CategoryManager = () => {
               </div>
               
               <div className="flex justify-between items-center text-sm">
-                <span className="text-gray-600">Products: {category.productCount}</span>
+                <span className="text-gray-600">产品数量：{category.productCount}</span>
                 <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
                   ID: {category.id}
                 </span>
@@ -250,7 +250,7 @@ const CategoryManager = () => {
         
         {categories.length === 0 && (
           <div className="text-center py-8 text-gray-500">
-            No categories found. Add your first category to get started.
+            没有找到分类。请添加您的第一个分类。
           </div>
         )}
       </div>
