@@ -26,23 +26,9 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // Netlify Forms will handle the submission
+    // No need to prevent default - let Netlify handle it
     console.log('Quote form submitted:', formData);
-    alert('Thank you for your quote request! We will get back to you within 24 hours with detailed pricing information.');
-    
-    // Reset form
-    setFormData({
-      productCategory: '',
-      productName: '',
-      quantity: '',
-      specifications: '',
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: ''
-    });
-    setSelectedProduct(null);
   };
 
   // Get all products for the dropdown
@@ -84,17 +70,17 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
               <div className="flex items-center gap-3 mb-6">
                 <FileText className="w-6 h-6 text-primary-600" />
                 <h2 className="text-2xl font-bold text-gray-900">
-                  Request a Quote
+                  {t('requestQuote')}
                 </h2>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6" netlify name="quote-request" method="POST" data-netlify="true">
+              <form onSubmit={handleSubmit} className="space-y-6" name="quote-request" method="POST" data-netlify="true" action="/quote-success">
                 <input type="hidden" name="form-name" value="quote-request" />
                 
                 {/* Product Information */}
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Product Information
+                    {t('productInformation')}
                   </h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -110,7 +96,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         required
                         className="input-field"
                       >
-                        <option value="">Select a category</option>
+                        <option value="">{t('selectCategory')}</option>
                         {productCategories.map((category) => (
                           <option key={category.id} value={category.id}>
                             {t(category.nameKey)}
@@ -131,7 +117,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         required
                         className="input-field"
                       >
-                        <option value="">Select a product</option>
+                        <option value="">{t('selectProduct')}</option>
                         {allProducts
                           .filter(product => !formData.productCategory || product.category === formData.productCategory)
                           .map((product) => (
@@ -157,7 +143,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         required
                         min="1"
                         className="input-field"
-                        placeholder="Enter quantity needed"
+                        placeholder={t('enterQuantity')}
                       />
                     </div>
                     
@@ -172,7 +158,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         value={formData.specifications}
                         onChange={handleInputChange}
                         className="input-field"
-                        placeholder="e.g., Size, Model, Brand compatibility"
+                        placeholder={t('specificationsPlaceholder')}
                       />
                     </div>
                   </div>
@@ -181,7 +167,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                 {/* Contact Information */}
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Contact Information
+                    {t('contactInformation')}
                   </h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -197,7 +183,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         onChange={handleInputChange}
                         required
                         className="input-field"
-                        placeholder="Enter your full name"
+                        placeholder={t('enterFullName')}
                       />
                     </div>
                     
@@ -213,7 +199,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         onChange={handleInputChange}
                         required
                         className="input-field"
-                        placeholder="Enter your email address"
+                        placeholder={t('enterEmail')}
                       />
                     </div>
                   </div>
@@ -230,7 +216,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="input-field"
-                        placeholder="Enter your phone number"
+                        placeholder={t('enterPhone')}
                       />
                     </div>
                     
@@ -245,7 +231,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                         value={formData.company}
                         onChange={handleInputChange}
                         className="input-field"
-                        placeholder="Enter your company name"
+                        placeholder={t('enterCompany')}
                       />
                     </div>
                   </div>
@@ -254,7 +240,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                 {/* Additional Information */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Additional Information
+                    {t('additionalInformation')}
                   </label>
                   <textarea
                     id="message"
@@ -263,7 +249,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                     onChange={handleInputChange}
                     rows={4}
                     className="input-field"
-                    placeholder="Please provide any additional details about your requirements, delivery preferences, or special requests."
+                    placeholder={t('additionalInfoPlaceholder')}
                   ></textarea>
                 </div>
 
@@ -284,7 +270,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
               {/* Benefits */}
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Why Choose Us?
+                  {t('whyChooseUs')}
                 </h3>
                 <div className="space-y-3">
                   {benefits.map((benefit, index) => (
@@ -299,10 +285,10 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
               {/* Contact Info */}
               <div className="bg-primary-600 text-white rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-4">
-                  Need Help?
+                  {t('needHelp')}
                 </h3>
                 <p className="text-blue-100 mb-4">
-                  Our sales team is ready to assist you with your quote request.
+                  {t('salesTeamReady')}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm">
@@ -324,7 +310,7 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
               {selectedProduct && (
                 <div className="bg-white rounded-lg shadow-md p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Selected Product
+                    {t('selectedProduct')}
                   </h3>
                   <div className="flex items-center gap-4">
                     <img
@@ -336,19 +322,20 @@ const QuotePage = ({ selectedProduct, setSelectedProduct }) => {
                       <h4 className="font-medium text-gray-900">
                         {t(selectedProduct.nameKey)}
                       </h4>
-                      <p className="text-sm text-gray-600">
+                      {/* Price and MOQ commented out for current stage */}
+                      {/* <p className="text-sm text-gray-600">
                         ${selectedProduct.price} USD
                       </p>
                       <p className="text-sm text-gray-600">
                         MOQ: {selectedProduct.moq} pcs
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedProduct(null)}
                     className="mt-4 text-sm text-primary-600 hover:text-primary-700"
                   >
-                    Clear selection
+                    {t('clearSelection')}
                   </button>
                 </div>
               )}

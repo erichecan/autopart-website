@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>询价提交成功 - 汽车配件专业供应商</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .check-animation {
+            animation: checkmark 0.8s ease-in-out;
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8 text-center fade-in">
+        <!-- Success Icon -->
+        <div class="w-16 h-16 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center check-animation">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        
+        <!-- Success Message -->
+        <h1 class="text-2xl font-bold text-gray-900 mb-4">询价提交成功！</h1>
+        <p class="text-gray-600 mb-6 leading-relaxed">
+            感谢您的询价申请！我们已收到您的信息，我们的专业销售团队将在<strong>24小时内</strong>与您联系，为您提供详细的产品报价和专业建议。
+        </p>
+        
+        <!-- Contact Info -->
+        <div class="bg-blue-50 rounded-lg p-4 mb-6">
+            <h3 class="text-sm font-semibold text-blue-900 mb-2">紧急联系方式</h3>
+            <div class="text-sm text-blue-700 space-y-1">
+                <p>📞 电话：+86 138 0013 8000</p>
+                <p>📧 邮箱：sales@autoparts.com</p>
+                <p>⏰ 工作时间：周一至周五 8:00-18:00 (北京时间)</p>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="space-y-3">
+            <a href="/" class="w-full bg-red-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-red-700 transition-colors inline-block">
+                返回首页
+            </a>
+            <a href="/products" class="w-full border border-gray-300 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-50 transition-colors inline-block">
+                继续浏览产品
+            </a>
+        </div>
+        
+        <!-- Footer Note -->
+        <p class="text-xs text-gray-500 mt-6">
+            中国源头工厂 · 20年专业经验 · 质量保证
+        </p>
+    </div>
+    
+    <!-- Auto-redirect script (optional) -->
+    <script>
+        // Optional: Auto-redirect to home page after 10 seconds
+        // setTimeout(() => {
+        //     window.location.href = '/';
+        // }, 10000);
+    </script>
+</body>
+</html>

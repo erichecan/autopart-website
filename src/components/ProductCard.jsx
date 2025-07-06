@@ -31,8 +31,8 @@ const ProductCard = ({ product, onQuoteClick }) => {
           </p>
         )}
 
-        {/* Price and MOQ */}
-        <div className="space-y-2 mb-4">
+        {/* Price and MOQ - Commented out for current stage, all products are quote-only */}
+        {/* <div className="space-y-2 mb-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <DollarSign className="w-4 h-4" />
@@ -52,7 +52,7 @@ const ProductCard = ({ product, onQuoteClick }) => {
               {product.moq} {t('pieces')}
             </span>
           </div>
-        </div>
+        </div> */}
 
         {/* Action Buttons */}
         <div className="flex gap-3">
