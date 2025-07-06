@@ -10,7 +10,8 @@ export const productCategories = [
         price: 25,
         moq: 100,
         image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop',
-        category: 'engine'
+        category: 'engine',
+        oemCode: 'PST-4001-STD'
       },
       {
         id: 'piston-rings',
@@ -18,7 +19,8 @@ export const productCategories = [
         price: 8,
         moq: 500,
         image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=300&fit=crop',
-        category: 'engine'
+        category: 'engine',
+        oemCode: 'PRG-2050-SET'
       },
       {
         id: 'cylinder-liners',
@@ -26,7 +28,8 @@ export const productCategories = [
         price: 45,
         moq: 50,
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-        category: 'engine'
+        category: 'engine',
+        oemCode: 'CYL-8500-LNR'
       },
       {
         id: 'crankshafts',
@@ -34,7 +37,8 @@ export const productCategories = [
         price: 180,
         moq: 20,
         image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop',
-        category: 'engine'
+        category: 'engine',
+        oemCode: 'CRK-1200-ASM'
       },
       {
         id: 'connecting-rods',
@@ -42,7 +46,8 @@ export const productCategories = [
         price: 35,
         moq: 100,
         image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=300&fit=crop',
-        category: 'engine'
+        category: 'engine',
+        oemCode: 'CON-6700-ROD'
       }
     ]
   },
@@ -57,7 +62,8 @@ export const productCategories = [
         price: 15,
         moq: 200,
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-        category: 'brake'
+        category: 'brake',
+        oemCode: 'BRK-3400-PAD'
       },
       {
         id: 'brake-discs',
@@ -65,7 +71,8 @@ export const productCategories = [
         price: 65,
         moq: 50,
         image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop',
-        category: 'brake'
+        category: 'brake',
+        oemCode: 'BRK-5600-DSC'
       },
       {
         id: 'brake-drums',
@@ -73,7 +80,8 @@ export const productCategories = [
         price: 85,
         moq: 30,
         image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=300&fit=crop',
-        category: 'brake'
+        category: 'brake',
+        oemCode: 'BRK-7800-DRM'
       },
       {
         id: 'brake-fluid',
@@ -81,7 +89,8 @@ export const productCategories = [
         price: 12,
         moq: 500,
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-        category: 'brake'
+        category: 'brake',
+        oemCode: 'BRK-1100-FLD'
       }
     ]
   },

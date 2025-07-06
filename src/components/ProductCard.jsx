@@ -22,9 +22,14 @@ const ProductCard = ({ product, onQuoteClick }) => {
 
       {/* Product Details */}
       <div className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">
           {t(product.nameKey)}
         </h3>
+        {product.oemCode && (
+          <p className="text-sm text-gray-500 mb-3 font-mono">
+            OEM: {product.oemCode}
+          </p>
+        )}
 
         {/* Price and MOQ */}
         <div className="space-y-2 mb-4">
@@ -53,14 +58,15 @@ const ProductCard = ({ product, onQuoteClick }) => {
         <div className="flex gap-3">
           <button
             onClick={() => onQuoteClick(product)}
-            className="flex-1 bg-primary-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-primary-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center justify-center gap-2"
           >
             {t('getQuote')}
             <ArrowRight className="w-4 h-4" />
           </button>
-          <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+          {/* TODO: View Details button - to be implemented later */}
+          {/* <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
             {t('viewDetails')}
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

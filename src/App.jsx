@@ -7,11 +7,22 @@ import ProductsPage from './pages/ProductsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import QuotePage from './pages/QuotePage';
+import AdminLogin from './admin/components/AdminLogin';
+import AdminApp from './admin/AdminApp';
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const { language } = useLanguage();
+
+  // Check for admin route
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === '/admin' || path.startsWith('/admin/')) {
+      setCurrentPage('admin');
+    }
+  }, []);
 
   // Update document direction and language for RTL support
   useEffect(() => {
@@ -38,6 +49,10 @@ function AppContent() {
         return <ContactPage setCurrentPage={setCurrentPage} />;
       case 'quote':
         return <QuotePage selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} />;
+      case 'admin':
+        return isAdminLoggedIn ? 
+          <AdminApp onLogout={() => setIsAdminLoggedIn(false)} /> : 
+          <AdminLogin onLogin={() => setIsAdminLoggedIn(true)} />;
       default:
         return <HomePage setCurrentPage={setCurrentPage} setSelectedProduct={setSelectedProduct} />;
     }
